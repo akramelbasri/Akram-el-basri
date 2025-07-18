@@ -1,0 +1,2082 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akram El Basri | Data Scientist & AI Engineer</title>
+    <meta name="description" content="Portfolio of Akram El Basri, Data Scientist & AI Engineer specializing in Machine Learning, NLP, and Computer Vision">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        /* Animation personnalisée pour l'effet machine à écrire */
+        .typewriter-text {
+            overflow: hidden;
+            border-right: 3px solid; /* Curseur */
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation:
+                typing 3s steps(40, end),
+                blink-caret .75s step-end infinite;
+        }
+
+        /* Animation pour le deuxième texte avec délai */
+        .typewriter-text-delayed {
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0 auto;
+            animation:
+                typing 3.5s steps(50, end) 3s forwards,
+                blink-caret .75s step-end 3s infinite;
+        }
+
+        /* Définition des animations */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: currentColor; }
+        }
+
+        /* Adaptation pour le mode sombre */
+        .dark .typewriter-text,
+        .dark .typewriter-text-delayed {
+            animation:
+                typing 3s steps(40, end),
+                blink-caret .75s step-end infinite;
+        }
+
+        .dark .typewriter-text-delayed {
+            animation:
+                typing 3.5s steps(50, end) 3s forwards,
+                blink-caret .75s step-end 3s infinite;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-reverse': 'float-reverse 6s ease-in-out infinite',
+                        'float-2': 'float 8s ease-in-out infinite',
+                        'spin-slow': 'spin 20s linear infinite',
+                        'typing': 'typing 3.5s steps(40, end), blink-caret .75s step-end infinite',
+                        'fade-in': 'fadeIn 1.4s ease-in',
+                        'progress': 'progress 1.4s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'float-reverse': {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(20px)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        progress: {
+                            '0%': { width: '0%' },
+                            '100%': { width: 'var(--value)' },
+                        },
+                        typing: {
+                            'from': { width: '0' },
+                            'to': { width: '100%' },
+                        },
+                        'blink-caret': {
+                            'from, to': { 'border-color': 'transparent' },
+                            '50%': { 'border-color': 'currentColor' },
+                        },
+                    },
+                    colors: {
+                        primary: {
+                            light: '#4f46e5',
+                            dark: '#818cf8',
+                        },
+                        secondary: {
+                            light: '#10b981',
+                            dark: '#34d399',
+                        },
+                        accent: {
+                            light: '#f59e0b',
+                            dark: '#fcd34d',
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .perspective-1000 {
+                perspective: 1000px;
+            }
+            .transform-style-preserve-3d {
+                transform-style: preserve-3d;
+            }
+            .backface-hidden {
+                backface-visibility: hidden;
+            }
+            .text-gradient {
+                @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark;
+            }
+            .bg-mesh {
+                background-image: radial-gradient(circle at 50% 50%, rgba(79, 70, 229, 0.1) 0%, transparent 50%);
+            }
+            .dark .bg-mesh {
+                background-image: radial-gradient(circle at 50% 50%, rgba(129, 140, 248, 0.1) 0%, transparent 50%);
+            }
+            .shape {
+                @apply absolute rounded-full opacity-20 blur-xl;
+            }
+            .cube {
+                @apply w-16 h-16 bg-accent-light dark:bg-accent-dark;
+                transform: rotate(45deg);
+            }
+            .sphere {
+                @apply w-20 h-20 bg-primary-light dark:bg-primary-dark;
+            }
+            .pyramid {
+                @apply w-0 h-0 border-l-[30px] border-r-[30px] border-b-[50px] border-l-transparent border-r-transparent border-b-secondary-light dark:border-b-secondary-dark;
+            }
+        }
+
+        Animation pour afficher les projets cachés
+    .hidden-project {
+        display: none;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease, transform 3s ease;
+    }
+
+    .show-project {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Animation en escalier pour les projets */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .project-card {
+        animation: fadeInUp 1s ease forwards;
+    }
+    /* Animation pour afficher les projets cachés - version lente */
+    .hidden-project {
+        display: none;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 1.2s ease, transform 3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .show-project {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Animation en escalier pour les projets - version lente */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .project-card {
+        animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    /* Délais d'animation pour chaque carte */
+    .project-card:nth-child(1) { animation-delay: 0.3s; }
+    .project-card:nth-child(2) { animation-delay: 0.5s; }
+    .project-card:nth-child(3) { animation-delay: 0.7s; }
+    .project-card:nth-child(4) { animation-delay: 0.9s; }
+    .project-card:nth-child(5) { animation-delay: 0.1s; }
+    .project-card:nth-child(6) { animation-delay: 1.3s; }
+    .project-card:nth-child(7) { animation-delay: 1.5s; }
+    .project-card:nth-child(8) { animation-delay: 1.7s; }
+    .project-card:nth-child(9) { animation-delay: 1.9s; }
+    .project-card:nth-child(10) { animation-delay: 2.1s; }
+    .project-card:nth-child(11) { animation-delay: 2.3s; }
+    .project-card:nth-child(12) { animation-delay: 2.5s; }
+    .project-card:nth-child(13) { animation-delay: 2.7s; }
+    .project-card:nth-child(14) { animation-delay: 2.9s; }
+    /* Ajoutez plus si nécessaire */
+    </style>
+</head>
+<body class="bg-slate-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 font-sans antialiased">
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-button" class="md:hidden fixed top-4 right-4 z-50 p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+    </button>
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-64 bg-white dark:bg-gray-800 shadow-lg transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out">
+        <div class="flex flex-col h-full p-6">
+            <div class="mb-10">
+                <h1 class="text-2xl font-bold text-primary-light dark:text-primary-dark">Akram El Basri</h1>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Data Scientist & AI Engineer</p>
+            </div>
+            
+            <nav class="flex-1">
+                <ul class="space-y-4">
+                    <li>
+                        <a href="#home" class="flex items-center p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark transition-colors">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                            </svg>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#about" class="flex items-center p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark transition-colors">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            </svg>
+                            About
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#skills" class="flex items-center p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark transition-colors">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            </svg>
+                            Skills
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#experience" class="flex items-center p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark transition-colors">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            Experience
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#projects" class="flex items-center p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark transition-colors">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                            </svg>
+                            Projects
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#certifications" class="flex items-center p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark transition-colors">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            Certifications
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contact" class="flex items-center p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark transition-colors">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="mt-auto">
+                <button id="theme-toggle" class="flex items-center justify-center w-full p-2 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                    <svg id="theme-icon" class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                    <span id="theme-text">Light Mode</span>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="md:ml-64 min-h-screen">
+        <!-- Hero Section -->
+        <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden bg-mesh">
+            <!-- Floating 3D Shapes -->
+            <div class="shape cube animation-float" style="top: 20%; left: 15%;"></div>
+            <div class="shape sphere animation-float-reverse" style="top: 60%; left: 10%;"></div>
+            <div class="shape pyramid animation-float-2" style="top: 30%; right: 15%;"></div>
+            
+            <div class="container mx-auto px-6 z-10 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 fade-in">
+                    <span class="text-gradient">Akram El Basri</span>
+                </h1>
+                
+                <!-- Titre avec animation machine à écrire -->
+                <div class="inline-block my-6">
+                    <h2 class="text-xl md:text-3xl font-semibold mb-6 typewriter-text text-primary-light dark:text-primary-dark">
+                        Data Scientist & AI Engineer
+                    </h2>
+                </div>
+                
+                <!-- Description avec animation séquentielle -->
+                <p class="max-w-2xl mx-auto text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8 typewriter-text-delayed">
+                    Transforming data into intelligent solutions with Machine Learning, NLP, and Computer Vision
+                </p>
+                
+                <div class="flex justify-center space-x-4">
+                    <a href="#contact" class="px-6 py-3 bg-primary-light dark:bg-primary-dark text-white rounded-md hover:bg-opacity-90 transition-all transform hover:scale-105 shadow-lg">
+                        Contact Me
+                    </a>
+                    <a href="#projects" class="px-6 py-3 border-2 border-primary-light dark:border-primary-dark text-primary-light dark:text-primary-dark rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-all transform hover:scale-105">
+                        View Projects
+                    </a>
+                </div>
+            </div>
+            
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
+                </a>
+            </div>
+            
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 bg-white dark:bg-gray-800">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-12 text-primary-light dark:text-primary-dark">About Me</h2>
+                
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="md:w-1/3 flex justify-center">
+                        <div class="relative group">
+                            <div class="absolute -inset-2 rounded-lg bg-gradient-to-r from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark opacity-75 group-hover:opacity-100 transition-all duration-500 blur-md"></div>
+                            <img src="img/profile.png" alt="Akram El Basri" class="relative w-64 h-64 rounded-lg object-cover shadow-xl transform group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                    </div>
+                    
+                    <div class="md:w-2/3">
+                        <h3 class="text-2xl font-semibold mb-4">Passionate Data Scientist & AI Engineer</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6">
+                            Data Scientist & Automation Engineer passionate about AI and innovation. With strong expertise in Machine Learning, NLP, and Computer Vision, I turn data into intelligent and automated solutions. Driven by complex challenges, I strive to push the boundaries of technology for real-world impact. Always eager to learn and explore new opportunities to shape the future with data.
+                        </p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                            <div>
+                                <h4 class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Education</h4>
+                                <ul class="space-y-2">
+                                    <li class="flex items-start">
+                                        <svg class="w-5 h-5 text-secondary-light dark:text-secondary-dark mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                                        </svg>
+                                        <span>Master Big Data & Decision Support - ENSA Khouribga (2023-2025)</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="w-5 h-5 text-secondary-light dark:text-secondary-dark mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                                        </svg>
+                                        <span>Licence in AI & Data Science - EST Meknès (2022-2023)</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="w-5 h-5 text-secondary-light dark:text-secondary-dark mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                                        </svg>
+                                        <span>DUT in Business Intelligence & Data Science - EST Essaouira (2020-2022)</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Languages</h4>
+                                <ul class="space-y-2">
+                                    <li class="flex items-center">
+                                        <span class="w-2 h-2 rounded-full bg-primary-light dark:bg-primary-dark mr-2"></span>
+                                        <span>Arabic (Native)</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <span class="w-2 h-2 rounded-full bg-primary-light dark:bg-primary-dark mr-2"></span>
+                                        <span>French (Professional)</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <span class="w-2 h-2 rounded-full bg-primary-light dark:bg-primary-dark mr-2"></span>
+                                        <span>English (Professional)</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-4">
+                            <a href="img/Akram_elbasri_cv.pdf" download="Akram_elbasri_cv.pdf" class="px-6 py-3 bg-primary-light dark:bg-primary-dark text-white rounded-md hover:bg-opacity-90 transition-all transform hover:scale-105 shadow-lg flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                </svg>
+                                Download CV
+                            </a>
+                            <a href="https://www.linkedin.com/in/akram-el-basri-900181228/" target="_blank" class="px-6 py-3 border-2 border-primary-light dark:border-primary-dark text-primary-light dark:text-primary-dark rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-all transform hover:scale-105 flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+                                </svg>
+                                LinkedIn
+                            </a>
+                            <a href="mailto:elbasriakram771@gmail.com" class="px-6 py-3 border-2 border-primary-light dark:border-primary-dark text-primary-light dark:text-primary-dark rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-all transform hover:scale-105 flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                                Email Me
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section - Star Rating Version -->
+        <section id="skills" class="py-20 bg-gray-50 dark:bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-12 text-primary-light dark:text-primary-dark">Skills & Expertise</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Machine Learning -->
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                        <div class="flex items-center mb-4">
+                            <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10">
+                                <svg class="w-6 h-6 text-primary-light dark:text-primary-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold ml-3">Machine Learning</h3>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm font-medium">Supervised Learning</span>
+                                    <div class="flex">
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
+                                    <div class="bg-primary-light dark:bg-primary-dark h-1.5 rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm font-medium">Deep Learning</span>
+                                    <div class="flex">
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
+                                    <div class="bg-primary-light dark:bg-primary-dark h-1.5 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm font-medium">Model Optimization</span>
+                                    <div class="flex">
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
+                                    <div class="bg-primary-light dark:bg-primary-dark h-1.5 rounded-full" style="width: 80%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Natural Language Processing -->
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                        <div class="flex items-center mb-4">
+                            <div class="p-3 rounded-full bg-secondary-light/10 dark:bg-secondary-dark/10">
+                                <svg class="w-6 h-6 text-secondary-light dark:text-secondary-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold ml-3">Natural Language Processing</h3>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm font-medium">Text Classification</span>
+                                    <div class="flex">
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
+                                    <div class="bg-secondary-light dark:bg-secondary-dark h-1.5 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm font-medium">LLM (BERT, Transformers)</span>
+                                    <div class="flex">
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
+                                    <div class="bg-secondary-light dark:bg-secondary-dark h-1.5 rounded-full" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm font-medium">Chatbot Development</span>
+                                    <div class="flex">
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
+                                    <div class="bg-secondary-light dark:bg-secondary-dark h-1.5 rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Computer Vision -->
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                        <div class="flex items-center mb-4">
+                            <div class="p-3 rounded-full bg-accent-light/10 dark:bg-accent-dark/10">
+                                <svg class="w-6 h-6 text-accent-light dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold ml-3">Computer Vision</h3>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm font-medium">Object Detection</span>
+                                    <div class="flex">
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
+                                    <div class="bg-accent-light dark:bg-accent-dark h-1.5 rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm font-medium">Image Classification</span>
+                                    <div class="flex">
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
+                                    <div class="bg-accent-light dark:bg-accent-dark h-1.5 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm font-medium">Real-time Processing</span>
+                                    <div class="flex">
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
+                                    <div class="bg-accent-light dark:bg-accent-dark h-1.5 rounded-full" style="width: 80%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Data Analysis -->
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                        <div class="flex items-center mb-4">
+                            <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10">
+                                <svg class="w-6 h-6 text-primary-light dark:text-primary-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold ml-3">Data Analysis</h3>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm font-medium">Exploratory Analysis</span>
+                                    <div class="flex">
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
+                                    <div class="bg-primary-light dark:bg-primary-dark h-1.5 rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm font-medium">Statistical Modeling</span>
+                                    <div class="flex">
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
+                                    <div class="bg-primary-light dark:bg-primary-dark h-1.5 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm font-medium">Data Visualization</span>
+                                    <div class="flex">
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
+                                    <div class="bg-primary-light dark:bg-primary-dark h-1.5 rounded-full" style="width: 95%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Data Engineering -->
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                        <div class="flex items-center mb-4">
+                            <div class="p-3 rounded-full bg-secondary-light/10 dark:bg-secondary-dark/10">
+                                <svg class="w-6 h-6 text-secondary-light dark:text-secondary-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold ml-3">Data Engineering</h3>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm font-medium">ETL Processes</span>
+                                    <div class="flex">
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
+                                    <div class="bg-secondary-light dark:bg-secondary-dark h-1.5 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm font-medium">Data Warehousing</span>
+                                    <div class="flex">
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
+                                    <div class="bg-secondary-light dark:bg-secondary-dark h-1.5 rounded-full" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm font-medium">Database Management</span>
+                                    <div class="flex">
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
+                                    <div class="bg-secondary-light dark:bg-secondary-dark h-1.5 rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tools & Technologies -->
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                        <div class="flex items-center mb-4">
+                            <div class="p-3 rounded-full bg-accent-light/10 dark:bg-accent-dark/10">
+                                <svg class="w-6 h-6 text-accent-light dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold ml-3">Tools & Technologies</h3>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm font-medium">Python (TensorFlow, PyTorch)</span>
+                                    <div class="flex">
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
+                                    <div class="bg-accent-light dark:bg-accent-dark h-1.5 rounded-full" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm font-medium">Power BI & Tableau</span>
+                                    <div class="flex">
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
+                                    <div class="bg-accent-light dark:bg-accent-dark h-1.5 rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm font-medium">SQL & NoSQL Databases</span>
+                                    <div class="flex">
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
+                                    <div class="bg-accent-light dark:bg-accent-dark h-1.5 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-20 bg-white dark:bg-gray-800">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-12 text-primary-light dark:text-primary-dark">Work Experience</h2>
+                
+                <div class="relative">
+                    <!-- Timeline line -->
+                    <div class="absolute left-1/2 w-1 h-full bg-gray-200 dark:bg-gray-700 transform -translate-x-1/2"></div>
+                    
+                    <!-- Timeline items -->
+                    <div class="space-y-12">
+                        <!-- PFE -->
+                        <div class="relative">
+                            <div class="timeline-dot absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-primary-light dark:bg-primary-dark border-4 border-white dark:border-gray-800"></div>
+                            <div class="timeline-content ml-auto md:w-5/12 p-6 bg-gray-50 dark:bg-gray-700 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                                <div class="flex items-center mb-2">
+                                    <div class="w-10 h-10 rounded-full bg-white dark:bg-gray-600 flex items-center justify-center shadow-md mr-4">
+                                        <svg class="w-6 h-6 text-primary-light dark:text-primary-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-semibold">PFE: Loss Functions in ML</h3>
+                                        <p class="text-gray-600 dark:text-gray-300">ENSA Khouribga</p>
+                                    </div>
+                                </div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400 mb-3">Jan 2025 - Jun 2025</div>
+                                <ul class="list-disc pl-5 space-y-1 text-gray-600 dark:text-gray-300">
+                                    <li>Theoretical and experimental analysis of 17 loss functions in supervised learning</li>
+                                    <li>Proposed a decision framework for optimal loss function selection</li>
+                                    <li>Technologies: TensorFlow/Keras, Scikit-learn, Python</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Hackathon -->
+                        <div class="relative">
+                            <div class="timeline-dot absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-secondary-light dark:bg-secondary-dark border-4 border-white dark:border-gray-800"></div>
+                            <div class="timeline-content mr-auto md:w-5/12 p-6 bg-gray-50 dark:bg-gray-700 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                                <div class="flex items-center mb-2">
+                                    <div class="w-10 h-10 rounded-full bg-white dark:bg-gray-600 flex items-center justify-center shadow-md mr-4">
+                                        <svg class="w-6 h-6 text-secondary-light dark:text-secondary-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-semibold">Chatbot Developer</h3>
+                                        <p class="text-gray-600 dark:text-gray-300">Beamtel, Rabat</p>
+                                    </div>
+                                </div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400 mb-3">Apr 2023 - Jun 2023</div>
+                                <ul class="list-disc pl-5 space-y-1 text-gray-600 dark:text-gray-300">
+                                    <li>Developed and integrated an intelligent assistance solution</li>
+                                    <li>Automated customer question answering system</li>
+                                    <li>Technologies: TensorFlow, Hugging Face Transformers, ReactJS</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Chatbot Developer -->
+                        <div class="relative">
+                            <div class="timeline-dot absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-accent-light dark:bg-accent-dark border-4 border-white dark:border-gray-800"></div>
+                            <div class="timeline-content ml-auto md:w-5/12 p-6 bg-gray-50 dark:bg-gray-700 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                                <div class="flex items-center mb-2">
+                                    <div class="w-10 h-10 rounded-full bg-white dark:bg-gray-600 flex items-center justify-center shadow-md mr-4">
+                                        <svg class="w-6 h-6 text-accent-light dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-semibold">Data Analyst</h3>
+                                        <p class="text-gray-600 dark:text-gray-300">IMA, Agadir</p>
+                                    </div>
+                                </div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400 mb-3">Apr 2024 - Jul 2024</div>
+                                <ul class="list-disc pl-5 space-y-1 text-gray-600 dark:text-gray-300">
+                                    <li>Designed a business-adapted data warehouse</li>
+                                    <li>Structured and transformed data via ETL</li>
+                                    <li>Created dashboards for strategic analysis</li>
+                                    <li>Created dashboards for strategic analysis</li>
+                                    <li>Technologies: SQL, Power BI, SSIS, SSMS</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 bg-gray-50 dark:bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-12 text-primary-light dark:text-primary-dark">Projects</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Projets visibles par défaut -->
+                    <div class="project-card group perspective-1000">
+                        <!-- Academic Journal Recommendation System -->
+                        <div class="relative h-full transform-style-preserve-3d transition-all duration-500 group-hover:rotate-y-180">
+                            <!-- Front Side -->
+                            <div class="backface-hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden h-full">
+                                <div class="h-48 bg-gradient-to-r from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark flex items-center justify-center">
+                                    <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                                    </svg>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold mb-2">Academic Journal Recommendation</h3>
+                                    <p class="text-gray-600 dark:text-gray-300 mb-4">MLOps system for recommending academic journals based on research interests</p>
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <span class="px-2 py-1 text-xs rounded-full bg-primary-light dark:bg-primary-dark bg-opacity-10 dark:bg-opacity-10 text-primary-light dark:text-primary-dark">MLOps</span>
+                                        <span class="px-2 py-1 text-xs rounded-full bg-secondary-light dark:bg-secondary-dark bg-opacity-10 dark:bg-opacity-10 text-secondary-light dark:text-secondary-dark">Scraping</span>
+                                        <span class="px-2 py-1 text-xs rounded-full bg-accent-light dark:bg-accent-dark bg-opacity-10 dark:bg-opacity-10 text-accent-light dark:text-accent-dark">KNN</span>
+                                    </div>
+                                    <button class="text-sm text-primary-light dark:text-primary-dark font-medium hover:underline">View Details</button>
+                                </div>
+                            </div>
+                            <!-- Back Side -->
+                            <div class="absolute inset-0 backface-hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden h-full transform rotate-y-180 p-6 flex flex-col">
+                                <h3 class="text-xl font-semibold mb-4">Academic Journal Recommendation</h3>
+                                <ul class="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-300 mb-4 flex-1">
+                                    <li>Scraped data from Scopus, Web of Science, and Google Scholar</li>
+                                    <li>Implemented clustering and KNN recommendation algorithms</li>
+                                    <li>Built interactive application for journal recommendations</li>
+                                </ul>
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">2024</span>
+                                    <a href="#" class="text-sm text-primary-light dark:text-primary-dark font-medium hover:underline">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Chatbot with RAG Architecture -->
+                    <div class="project-card group perspective-1000">
+                        <div class="relative h-full transform-style-preserve-3d transition-all duration-500 group-hover:rotate-y-180">
+                            <!-- Front Side -->
+                            <div class="backface-hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden h-full">
+                                <div class="h-48 bg-gradient-to-r from-accent-light to-primary-light dark:from-accent-dark dark:to-primary-dark flex items-center justify-center">
+                                    <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+                                    </svg>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold mb-2">Chatbot with RAG Architecture</h3>
+                                    <p class="text-gray-600 dark:text-gray-300 mb-4">Intelligent chatbot using Retrieval-Augmented Generation</p>
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <span class="px-2 py-1 text-xs rounded-full bg-primary-light dark:bg-primary-dark bg-opacity-10 dark:bg-opacity-10 text-primary-light dark:text-primary-dark">NLP</span>
+                                        <span class="px-2 py-1 text-xs rounded-full bg-secondary-light dark:bg-secondary-dark bg-opacity-10 dark:bg-opacity-10 text-secondary-light dark:text-secondary-dark">RAG</span>
+                                        <span class="px-2 py-1 text-xs rounded-full bg-accent-light dark:bg-accent-dark bg-opacity-10 dark:bg-opacity-10 text-accent-light dark:text-accent-dark">Supabase</span>
+                                    </div>
+                                    <button class="text-sm text-primary-light dark:text-primary-dark font-medium hover:underline">View Details</button>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 backface-hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden h-full transform rotate-y-180 p-6 flex flex-col">
+                                <h3 class="text-xl font-semibold mb-4">Chatbot with RAG Architecture</h3>
+                                <ul class="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-300 mb-4 flex-1">
+                                    <li>Implemented Retrieval-Augmented Generation architecture</li>
+                                    <li>Used Supabase vector database for efficient retrieval</li>
+                                    <li>Built dynamic data pipelines using n8n to integrate and orchestrate multiple data sources for real-time contextual responses</li>
+                                </ul>
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">2023</span>
+                                    <a href="#" class="text-sm text-primary-light dark:text-primary-dark font-medium hover:underline">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Text Summarization with BERT -->
+                    <div class="project-card group perspective-1000">
+                        <div class="relative h-full transform-style-preserve-3d transition-all duration-500 group-hover:rotate-y-180">
+                            <div class="backface-hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden h-full">
+                                <div class="h-48 bg-gradient-to-r from-secondary-light to-accent-light dark:from-secondary-dark dark:to-accent-dark flex items-center justify-center">
+                                    <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+                                    </svg>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold mb-2">Text Summarization with BERT</h3>
+                                    <p class="text-gray-600 dark:text-gray-300 mb-4">Advanced NLP project for automatic text summarization using BERT</p>
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <span class="px-2 py-1 text-xs rounded-full bg-primary-light dark:bg-primary-dark bg-opacity-10 dark:bg-opacity-10 text-primary-light dark:text-primary-dark">NLP</span>
+                                        <span class="px-2 py-1 text-xs rounded-full bg-secondary-light dark:bg-secondary-dark bg-opacity-10 dark:bg-opacity-10 text-secondary-light dark:text-secondary-dark">BERT</span>
+                                        <span class="px-2 py-1 text-xs rounded-full bg-accent-light dark:bg-accent-dark bg-opacity-10 dark:bg-opacity-10 text-accent-light dark:text-accent-dark">LLM</span>
+                                    </div>
+                                    <button class="text-sm text-primary-light dark:text-primary-dark font-medium hover:underline">View Details</button>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 backface-hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden h-full transform rotate-y-180 p-6 flex flex-col">
+                                <h3 class="text-xl font-semibold mb-4">Text Summarization with BERT</h3>
+                                <ul class="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-300 mb-4 flex-1">
+                                    <li>Implemented extractive and abstractive summarization techniques</li>
+                                    <li>Fine-tuned BERT model for domain-specific summarization</li>
+                                    <li>Built Streamlit app for interactive summarization</li>
+                                    <li>Achieved 85% accuracy in content preservation</li>
+                                </ul>
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">2023</span>
+                                    <a href="#" class="text-sm text-primary-light dark:text-primary-dark font-medium hover:underline">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Budget Analysis with ML -->
+                    <div class="project-card hidden-project group perspective-1000">
+                        <div class="relative h-full transform-style-preserve-3d transition-all duration-500 group-hover:rotate-y-180">
+                            <div class="backface-hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden h-full">
+                                <div class="h-48 bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark flex items-center justify-center">
+                                    <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold mb-2">Budget Analysis with ML</h3>
+                                    <p class="text-gray-600 dark:text-gray-300 mb-4">ML-powered budget and expense analysis system</p>
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <span class="px-2 py-1 text-xs rounded-full bg-primary-light dark:bg-primary-dark bg-opacity-10 dark:bg-opacity-10 text-primary-light dark:text-primary-dark">ML</span>
+                                        <span class="px-2 py-1 text-xs rounded-full bg-secondary-light dark:bg-secondary-dark bg-opacity-10 dark:bg-opacity-10 text-secondary-light dark:text-secondary-dark">Data Preprocessing</span>
+                                        <span class="px-2 py-1 text-xs rounded-full bg-accent-light dark:bg-accent-dark bg-opacity-10 dark:bg-opacity-10 text-accent-light dark:text-accent-dark">Visualization</span>
+                                    </div>
+                                    <button class="text-sm text-primary-light dark:text-primary-dark font-medium hover:underline">View Details</button>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 backface-hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden h-full transform rotate-y-180 p-6 flex flex-col">
+                                <h3 class="text-xl font-semibold mb-4">Budget Analysis with ML</h3>
+                                <ul class="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-300 mb-4 flex-1">
+                                    <li>Developed ML models for budget forecasting</li>
+                                    <li>Implemented automated data preprocessing pipeline</li>
+                                    <li>Created interactive visualizations for expense tracking</li>
+                                </ul>
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">2023</span>
+                                    <a href="#" class="text-sm text-primary-light dark:text-primary-dark font-medium hover:underline">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Student Management System -->
+                    <div class="project-card hidden-project group perspective-1000">
+                        <div class="relative h-full transform-style-preserve-3d transition-all duration-500 group-hover:rotate-y-180">
+                            <div class="backface-hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden h-full">
+                                <div class="h-48 bg-gradient-to-r from-secondary-light to-primary-light dark:from-secondary-dark dark:to-primary-dark flex items-center justify-center">
+                                    <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                                    </svg>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold mb-2">Student Management System</h3>
+                                    <p class="text-gray-600 dark:text-gray-300 mb-4">Web application for student registration and administration</p>
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <span class="px-2 py-1 text-xs rounded-full bg-primary-light dark:bg-primary-dark bg-opacity-10 dark:bg-opacity-10 text-primary-light dark:text-primary-dark">Django</span>
+                                        <span class="px-2 py-1 text-xs rounded-full bg-secondary-light dark:bg-secondary-dark bg-opacity-10 dark:bg-opacity-10 text-secondary-light dark:text-secondary-dark">MySQL</span>
+                                        <span class="px-2 py-1 text-xs rounded-full bg-accent-light dark:bg-accent-dark bg-opacity-10 dark:bg-opacity-10 text-accent-light dark:text-accent-dark">Bootstrap</span>
+                                    </div>
+                                    <button class="text-sm text-primary-light dark:text-primary-dark font-medium hover:underline">View Details</button>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 backface-hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden h-full transform rotate-y-180 p-6 flex flex-col">
+                                <h3 class="text-xl font-semibold mb-4">Student Management System</h3>
+                                <ul class="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-300 mb-4 flex-1">
+                                    <li>Full-stack web application for student management</li>
+                                    <li>Features: registration, admin dashboard, payment processing</li>
+                                    <li>Attendance tracking with reporting</li>
+                                    <li>Technologies: Django, MySQL, Bootstrap</li>
+                                </ul>
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">2022</span>
+                                    <a href="#" class="text-sm text-primary-light dark:text-primary-dark font-medium hover:underline">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hospital Management System -->
+                    <div class="project-card hidden-project group perspective-1000">
+                        <div class="relative h-full transform-style-preserve-3d transition-all duration-500 group-hover:rotate-y-180">
+                            <div class="backface-hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden h-full">
+                                <div class="h-48 bg-gradient-to-r from-accent-light to-secondary-light dark:from-accent-dark dark:to-secondary-dark flex items-center justify-center">
+                                    <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                                    </svg>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold mb-2">Hospital Management System</h3>
+                                    <p class="text-gray-600 dark:text-gray-300 mb-4">Desktop application for hospital administration</p>
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <span class="px-2 py-1 text-xs rounded-full bg-primary-light dark:bg-primary-dark bg-opacity-10 dark:bg-opacity-10 text-primary-light dark:text-primary-dark">JavaFX</span>
+                                        <span class="px-2 py-1 text-xs rounded-full bg-secondary-light dark:bg-secondary-dark bg-opacity-10 dark:bg-opacity-10 text-secondary-light dark:text-secondary-dark">Desktop</span>
+                                        <span class="px-2 py-1 text-xs rounded-full bg-accent-light dark:bg-accent-dark bg-opacity-10 dark:bg-opacity-10 text-accent-light dark:text-accent-dark">Management</span>
+                                    </div>
+                                    <button class="text-sm text-primary-light dark:text-primary-dark font-medium hover:underline">View Details</button>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 backface-hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden h-full transform rotate-y-180 p-6 flex flex-col">
+                                <h3 class="text-xl font-semibold mb-4">Hospital Management System</h3>
+                                <ul class="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-300 mb-4 flex-1">
+                                    <li>Comprehensive hospital administration system</li>
+                                    <li>Patient records, appointment scheduling</li>
+                                    <li>Inventory and staff management</li>
+                                    <li>Technologies: JavaFX, MySQL</li>
+                                </ul>
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">2021</span>
+                                    <a href="#" class="text-sm text-primary-light dark:text-primary-dark font-medium hover:underline">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Mask Detection & Gender Classification -->
+                    <div class="project-card hidden-project group perspective-1000">
+                        <div class="relative h-full transform-style-preserve-3d transition-all duration-500 group-hover:rotate-y-180">
+                            <div class="backface-hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden h-full">
+                                <div class="h-48 bg-gradient-to-r from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark flex items-center justify-center">
+                                    <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold mb-2">Mask & Gender Detection</h3>
+                                    <p class="text-gray-600 dark:text-gray-300 mb-4">Parallel mask detection and gender classification system</p>
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <span class="px-2 py-1 text-xs rounded-full bg-primary-light dark:bg-primary-dark bg-opacity-10 dark:bg-opacity-10 text-primary-light dark:text-primary-dark">CV</span>
+                                        <span class="px-2 py-1 text-xs rounded-full bg-secondary-light dark:bg-secondary-dark bg-opacity-10 dark:bg-opacity-10 text-secondary-light dark:text-secondary-dark">VGG-19</span>
+                                        <span class="px-2 py-1 text-xs rounded-full bg-accent-light dark:bg-accent-dark bg-opacity-10 dark:bg-opacity-10 text-accent-light dark:text-accent-dark">OpenCV</span>
+                                    </div>
+                                    <button class="text-sm text-primary-light dark:text-primary-dark font-medium hover:underline">View Details</button>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 backface-hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden h-full transform rotate-y-180 p-6 flex flex-col">
+                                <h3 class="text-xl font-semibold mb-4">Mask & Gender Detection</h3>
+                                <ul class="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-300 mb-4 flex-1">
+                                    <li>Integrated two VGG-19 based Deep Learning models</li>
+                                    <li>Simultaneous mask detection and gender classification</li>
+                                    <li>Real-time processing with OpenCV</li>
+                                    <li>Achieved 93% accuracy in mask detection</li>
+                                </ul>
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">2022</span>
+                                    <a href="#" class="text-sm text-primary-light dark:text-primary-dark font-medium hover:underline">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Emotion Recognition Model -->
+                    <div class="project-card hidden-project group perspective-1000">
+                        <div class="relative h-full transform-style-preserve-3d transition-all duration-500 group-hover:rotate-y-180">
+                            <div class="backface-hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden h-full">
+                                <div class="h-48 bg-gradient-to-r from-secondary-light to-accent-light dark:from-secondary-dark dark:to-accent-dark flex items-center justify-center">
+                                    <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold mb-2">Emotion Recognition</h3>
+                                    <p class="text-gray-600 dark:text-gray-300 mb-4">Model for classifying emotions in real-time</p>
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <span class="px-2 py-1 text-xs rounded-full bg-primary-light dark:bg-primary-dark bg-opacity-10 dark:bg-opacity-10 text-primary-light dark:text-primary-dark">CV</span>
+                                        <span class="px-2 py-1 text-xs rounded-full bg-secondary-light dark:bg-secondary-dark bg-opacity-10 dark:bg-opacity-10 text-secondary-light dark:text-secondary-dark">TensorFlow</span>
+                                        <span class="px-2 py-1 text-xs rounded-full bg-accent-light dark:bg-accent-dark bg-opacity-10 dark:bg-opacity-10 text-accent-light dark:text-accent-dark">Flask</span>
+                                    </div>
+                                    <button class="text-sm text-primary-light dark:text-primary-dark font-medium hover:underline">View Details</button>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 backface-hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden h-full transform rotate-y-180 p-6 flex flex-col">
+                                <h3 class="text-xl font-semibold mb-4">Emotion Recognition</h3>
+                                <ul class="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-300 mb-4 flex-1">
+                                    <li>Trained model to classify 7 basic emotions</li>
+                                    <li>Optimized for real-time detection</li>
+                                    <li>Deployed with Flask web interface</li>
+                                    <li>Achieved 88% accuracy on test set</li>
+                                </ul>
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">2022</span>
+                                    <a href="#" class="text-sm text-primary-light dark:text-primary-dark font-medium hover:underline">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Medical Data Warehouse -->
+                    <div class="project-card hidden-project group perspective-1000">
+                        <div class="relative h-full transform-style-preserve-3d transition-all duration-500 group-hover:rotate-y-180">
+                            <div class="backface-hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden h-full">
+                                <div class="h-48 bg-gradient-to-r from-accent-light to-primary-light dark:from-accent-dark dark:to-primary-dark flex items-center justify-center">
+                                    <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2 2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                                    </svg>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold mb-2">Medical Data Warehouse</h3>
+                                    <p class="text-gray-600 dark:text-gray-300 mb-4">Decision modeling for medical data analysis</p>
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <span class="px-2 py-1 text-xs rounded-full bg-primary-light dark:bg-primary-dark bg-opacity-10 dark:bg-opacity-10 text-primary-light dark:text-primary-dark">ETL</span>
+                                        <span class="px-2 py-1 text-xs rounded-full bg-secondary-light dark:bg-secondary-dark bg-opacity-10 dark:bg-opacity-10 text-secondary-light dark:text-secondary-dark">Power BI</span>
+                                        <span class="px-2 py-1 text-xs rounded-full bg-accent-light dark:bg-accent-dark bg-opacity-10 dark:bg-opacity-10 text-accent-light dark:text-accent-dark">SSIS</span>
+                                    </div>
+                                    <button class="text-sm text-primary-light dark:text-primary-dark font-medium hover:underline">View Details</button>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 backface-hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden h-full transform rotate-y-180 p-6 flex flex-col">
+                                <h3 class="text-xl font-semibold mb-4">Medical Data Warehouse</h3>
+                                <ul class="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-300 mb-4 flex-1">
+                                    <li>Structured medical data and implemented ETL processes</li>
+                                    <li>Designed and developed interactive dashboards</li>
+                                    <li>Technologies: SQL, Power BI, SSIS, SSAS, SSMS</li>
+                                    <li>Improved reporting efficiency by 60%</li>
+                                </ul>
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">2022</span>
+                                    <a href="#" class="text-sm text-primary-light dark:text-primary-dark font-medium hover:underline">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Interactive Salary Analysis Dashboard -->
+                    <div class="project-card hidden-project group perspective-1000">
+                        <div class="relative h-full transform-style-preserve-3d transition-all duration-500 group-hover:rotate-y-180">
+                            <div class="backface-hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden h-full">
+                                <div class="h-48 bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark flex items-center justify-center">
+                                    <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                                    </svg>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold mb-2">Interactive Salary Analysis Dashboard</h3>
+                                    <p class="text-gray-600 dark:text-gray-300 mb-4">Interactive dashboards for product performance</p>
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <span class="px-2 py-1 text-xs rounded-full bg-primary-light dark:bg-primary-dark bg-opacity-10 dark:bg-opacity-10 text-primary-light dark:text-primary-dark">Power BI</span>
+                                    </div>
+                                    <button class="text-sm text-primary-light dark:text-primary-dark font-medium hover:underline">View Details</button>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 backface-hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden h-full transform rotate-y-180 p-6 flex flex-col">
+                                <h3 class="text-xl font-semibold mb-4">Interactive Salary Analysis Dashboard</h3>
+                                <ul class="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-300 mb-4 flex-1">
+                                    <li>Designed and developed an interactive dashboard for employee salary analysis</li>
+                                    <li>VExtracted key insights to support strategic decision-making</li>
+                                    <li>TUtilized SQL and ETL tools to prepare and transform data for visualization in Power BI</li>
+                                </ul>
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">2023</span>
+                                    <a href="#" class="text-sm text-primary-light dark:text-primary-dark font-medium hover:underline">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card hidden-project group perspective-1000">
+                        <div class="relative h-full transform-style-preserve-3d transition-all duration-500 group-hover:rotate-y-180">
+                            <!-- Front Side -->
+                            <div class="backface-hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden h-full">
+                                <div class="h-48 bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark flex items-center justify-center">
+                                    <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold mb-2">Real-time Object Detection</h3>
+                                    <p class="text-gray-600 dark:text-gray-300 mb-4">Computer Vision solution with YOLO and Streamlit</p>
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <span class="px-2 py-1 text-xs rounded-full bg-primary-light dark:bg-primary-dark bg-opacity-10 dark:bg-opacity-10 text-primary-light dark:text-primary-dark">PyTorch</span>
+                                        <span class="px-2 py-1 text-xs rounded-full bg-primary-light dark:bg-primary-dark bg-opacity-10 dark:bg-opacity-10 text-primary-light dark:text-primary-dark">YOLO</span>
+                                        <span class="px-2 py-1 text-xs rounded-full bg-primary-light dark:bg-primary-dark bg-opacity-10 dark:bg-opacity-10 text-primary-light dark:text-primary-dark">Streamlit</span>
+                                    </div>
+                                    <button class="text-sm text-primary-light dark:text-primary-dark font-medium hover:underline">View Details</button>
+                                </div>
+                            </div>
+                            <!-- Back Side -->
+                            <div class="absolute inset-0 backface-hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden h-full transform rotate-y-180 p-6 flex flex-col">
+                                <h3 class="text-xl font-semibold mb-4">Real-time Object Detection</h3>
+                                <ul class="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-300 mb-4 flex-1">
+                                    <li>Designed an advanced Computer Vision solution based on YOLO</li>
+                                    <li>Implemented real-time object detection and tracking using Streamlit</li>
+                                    <li>Deployed the solution with PyTorch and YOLO for fast inference</li>
+                                </ul>
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">2022</span>
+                                    <a href="#" class="text-sm text-primary-light dark:text-primary-dark font-medium hover:underline">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Automated Proposal Creation System -->
+                    <div class="project-card hidden-project group perspective-1000">
+                        <div class="relative h-full transform-style-preserve-3d transition-all duration-500 group-hover:rotate-y-180">
+                            <!-- Front Side -->
+                            <div class="backface-hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden h-full">
+                                <div class="h-48 bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-dark dark:to-accent-dark flex items-center justify-center">
+                                    <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17l-5 5m0 0l5-5m-5 5V12a9 9 0 0118 0v10m-9-5h.01"></path>
+                                    </svg>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold mb-2">Automated Proposal Creation System</h3>
+                                    <p class="text-gray-600 dark:text-gray-300 mb-4">AI‑powered generator tailored to client needs</p>
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <span class="px-2 py-1 text-xs rounded-full bg-primary-light dark:bg-primary-dark bg-opacity-10 dark:bg-opacity-10 text-primary-light dark:text-primary-dark">Python</span>
+                                        <span class="px-2 py-1 text-xs rounded-full bg-primary-light dark:bg-primary-dark bg-opacity-10 dark:bg-opacity-10 text-primary-light dark:text-primary-dark">GPT‑4</span>
+                                        <span class="px-2 py-1 text-xs rounded-full bg-primary-light dark:bg-primary-dark bg-opacity-10 dark:bg-opacity-10 text-primary-light dark:text-primary-dark">n8n</span>
+                                    </div>
+                                    <button class="text-sm text-primary-light dark:text-primary-dark font-medium hover:underline">View Details</button>
+                                </div>
+                            </div>
+                            <!-- Back Side -->
+                            <div class="absolute inset-0 backface-hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden h-full transform rotate-y-180 p-6 flex flex-col">
+                                <h3 class="text-xl font-semibold mb-4">Automated Proposal Creation System</h3>
+                                <ul class="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-300 mb-4 flex-1">
+                                    <li>Generated proposals from inputs</li>
+                                    <li>Used GPT‑4 with prompts</li>
+                                    <li>Structured templates and logic</li>
+                                    <li>Automated flow using n8n</li>
+                                    <li>Fast and personalized output</li>
+                                </ul>
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">2025</span>
+                                    <a href="#" class="text-sm text-primary-light dark:text-primary-dark font-medium hover:underline">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- View All Projects Button -->
+                    <div class="text-center mt-12">
+                        <button id="view-all-projects" class="px-6 py-3 border-2 border-primary-light dark:border-primary-dark text-primary-light dark:text-primary-dark rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-all transform hover:scale-105">
+                            View All Projects
+                        </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="py-20 bg-white dark:bg-gray-800">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-12 text-primary-light dark:text-primary-dark">Certifications</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- IBM Certification -->
+                    <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                        <div class="flex items-center mb-4">
+                            <div class="w-16 h-16 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center shadow-md mr-4 overflow-hidden">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM Logo" class="w-10 h-10 object-contain">
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold">Exploratory Data Analysis</h3>
+                                <p class="text-gray-600 dark:text-gray-300">IBM (Coursera)</p>
+                            </div>
+                        </div>
+                        <img src="img/certificate_Data_Analysis.png" alt="Hackathon Team Photo" class="w-full h-42 object-cover rounded-md mb-4">
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Certification in Exploratory Data Analysis for Machine Learning, covering data visualization, statistical analysis, and data preprocessing techniques.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500 dark:text-gray-400">2023</span>
+                            <a href="#" class="text-sm text-primary-light dark:text-primary-dark font-medium hover:underline">View Credential</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 365DataScience Grouped Certifications -->
+                    <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                        <!-- Header -->
+                        <div class="flex items-center mb-4">
+                            <div class="w-16 h-16 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center shadow-md mr-4 overflow-hidden">
+                                <img src="https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/logos/365datascience-41pgssudljv3xu1osovil6.png/365datascience-wopjm0kjcr388maclvubi.png?_a=DATAdtAAZAA0" 
+                                    alt="365DataScience Logo" 
+                                    class="w-10 h-10 object-contain">
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold">365DataScience Certifications</h3>
+                                <p class="text-gray-600 dark:text-gray-300">Advanced Data Science Trilogy</p>
+                            </div>
+                        </div>
+
+                        <!-- Swiper Carousel -->
+                        <div class="swiper certificationSwiper mb-4 rounded-md">
+                            <div class="swiper-wrapper">
+                                <!-- Machine Learning Slide -->
+                                <div class="swiper-slide bg-white dark:bg-gray-600 p-4 rounded-md">
+                                    <img src="https://media.licdn.com/dms/image/v2/D4E22AQHHc9yKllzDVQ/feedshare-shrink_2048_1536/feedshare-shrink_2048_1536/0/1731711578360?e=1755734400&v=beta&t=pPx3qHJXOLBmjM4a5Xn1CH2worNtyW7lxKS13m68AGI"
+                                        alt="Machine Learning Certification" 
+                                        class="w-full h-120 object-contain mb-3">
+                                    <h4 class="font-semibold text-lg">Machine Learning Deep Dive</h4>
+                                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-2">
+                                        Comprehensive course on ML business applications, covering supervised and unsupervised learning.
+                                    </p>
+                                    <span class="text-xs text-gray-500 dark:text-gray-400">Issued: 2023</span>
+                                </div>
+
+                                <!-- Deep Learning Slide -->
+                                <div class="swiper-slide bg-white dark:bg-gray-600 p-4 rounded-md">
+                                    <img src="https://media.licdn.com/dms/image/v2/D4E22AQGb60vd7TTyAg/feedshare-shrink_2048_1536/feedshare-shrink_2048_1536/0/1731711579030?e=1755734400&v=beta&t=T0gxT1MeymGCoTvRmCK4QWi3XVC8eeCOudSM510RGm4"
+                                        alt="Deep Learning Certification" 
+                                        class="w-full h-120 object-contain mb-3">
+                                    <h4 class="font-semibold text-lg">Deep Learning Specialization</h4>
+                                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-2">
+                                        Certification covering Deep Learning with TensorFlow 2 and advanced neural networks.
+                                    </p>
+                                    <span class="text-xs text-gray-500 dark:text-gray-400">Issued: 2023</span>
+                                </div>
+
+                                <!-- KPIs Slide -->
+                                <div class="swiper-slide bg-white dark:bg-gray-600 p-4 rounded-md">
+                                    <img src="https://media.licdn.com/dms/image/v2/D4E22AQG7S0iZ1fIvhw/feedshare-shrink_2048_1536/feedshare-shrink_2048_1536/0/1731711579969?e=1755734400&v=beta&t=Aq9LZfTIxAHLpInOlc7u8zM56ZPhIRmjf2eWkyTASTw"
+                                        alt="KPIs Certification" 
+                                        class="w-full h-120 object-contain mb-3">
+                                    <h4 class="font-semibold text-lg">Mastering KPIs</h4>
+                                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-2">
+                                        Key Performance Indicators for data-driven decision making and business analytics.
+                                    </p>
+                                    <span class="text-xs text-gray-500 dark:text-gray-400">Issued: 2023</span>
+                                </div>
+
+                                <!-- GPT DS Slide -->
+                                <div class="swiper-slide bg-white dark:bg-gray-600 p-4 rounded-md">
+                                    <img src="https://media.licdn.com/dms/image/v2/D4E22AQHkg6GjTwUKGA/feedshare-shrink_2048_1536/feedshare-shrink_2048_1536/0/1731711577680?e=1755734400&v=beta&t=BsAVevlQ5h_mkFmgctf0F5wOVm4RgnZAr225iDLZjqs"
+                                        alt="Data Science Certification" 
+                                        class="w-full h-120 object-contain mb-3">
+                                    <h4 class="font-semibold text-lg">GPT for Data Science</h4>
+                                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-2"></p>
+                                    <span class="text-xs text-gray-500 dark:text-gray-400">Issued: 2023</span>
+                                </div>
+
+                                <!-- GPT DS Slide -->
+                                <div class="swiper-slide bg-white dark:bg-gray-600 p-4 rounded-md">
+                                    <img src="https://media.licdn.com/dms/image/v2/D4E22AQEPjHycjY-nGQ/feedshare-shrink_2048_1536/feedshare-shrink_2048_1536/0/1731711579107?e=1755734400&v=beta&t=nPnC-MAgzBT2y1o0ICuHR8Y_NKhDD1bQnc6snNxvrDc"
+                                        alt="Intro to Data Engineering Certification" 
+                                        class="w-full h-120 object-contain mb-3">
+                                    <h4 class="font-semibold text-lg">Intro to Data Engineering</h4>
+                                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-2"></p>
+                                    <span class="text-xs text-gray-500 dark:text-gray-400">Issued: 2023</span>
+                                </div>
+                            </div>
+                            <!-- Pagination -->
+                            <div class="swiper-pagination"></div>
+                        </div>
+
+                        <!-- Footer -->
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-sm text-gray-500 dark:text-gray-400">4 Certifications</span>
+                            <a href="#" class="text-sm text-primary-light dark:text-primary-dark font-medium hover:underline">
+                                View All Credentials
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Hackathon DATAVERSE -->
+            <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                <div class="flex items-center mb-4">
+                    <div class="w-16 h-16 rounded-full bg-red-100 dark:bg-white flex items-center justify-center shadow-md mr-4 overflow-hidden">
+                        <img src="https://www.ensamaroc.com/storage/images/schools/logos/ENSAKHOURIBGA_logo20230124171735.png" alt="ENSA Khouribga Logo" class="w-10 h-10 object-contain">
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold">2nd Place - Hackathon DATAVERSE</h3>
+                        <p class="text-gray-600 dark:text-gray-300">ENSA Khouribga | Nov 2024 (3-Day)</p>
+                    </div>
+                </div>
+                
+                <!-- Carrousel Swiper -->
+                <div class="swiper mySwiper mb-4 rounded-md">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="https://media.licdn.com/dms/image/v2/D4E22AQHT8Yg2iDwSHg/feedshare-shrink_1280/feedshare-shrink_1280/0/1732056844062?e=1755734400&v=beta&t=I0je83PEMqn0K9FQLavuEQaSpor-cgx1_q_rPw7jFV0" alt="Hackathon Photo 3" class="w-full h-25 object-cover">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/certificat_hackatho.jpg" alt="Hackathon Photo 1" class="w-full h-100 object-cover">
+                        </div>                        
+                        <div class="swiper-slide">
+                            <img src="img/certificat_hackathon1.jpg" alt="Hackathon Photo 3" class="w-full h-100 object-cover">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/profile2.png" alt="Hackathon Photo 3" class="w-full h-100 object-cover">
+                        </div>
+                    </div>
+                    <!-- Pagination et navigation optionnelles -->
+                    <div class="swiper-pagination"></div>
+                </div>
+
+                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                    Secured 2nd place by building an MLOps solution in a 30-hour sprint. Worked in a 3-person team using Flask, Vue.js, Scikit-learn, Seaborn, and Chart.js.
+                </p>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-gray-500 dark:text-gray-400">2024</span>
+                    <a href="#" class="text-sm text-primary-light dark:text-primary-dark font-medium hover:underline">View Project</a>
+                </div>
+            </div>
+                </div>
+            </div>
+            <!-- Swiper JS -->
+            <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+            <script>
+                const swiper = new Swiper('.mySwiper', {
+                    autoplay: {
+                        delay: 2500, // 3 secondes entre chaque slide
+                        disableOnInteraction: false,
+                    },
+                    loop: true, // boucle infinie
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                });
+                const certSwiper = new Swiper('.certificationSwiper', {
+                autoplay: {
+                    delay: 1700,
+                    disableOnInteraction: false,
+                },
+                loop: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                effect: 'slide',
+                grabCursor: true,
+            });
+            </script>
+        </section>
+        
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-gray-50 dark:bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-12 text-primary-light dark:text-primary-dark">Get In Touch</h2>
+                
+                <div class="flex flex-col md:flex-row gap-12">
+                    <div class="md:w-1/2">
+                        <h3 class="text-2xl font-semibold mb-4">Contact Information</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6">
+                            Feel free to reach out to me for collaborations, job opportunities, or just to say hello!
+                        </p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="p-3 rounded-full bg-primary-light dark:bg-primary-dark bg-opacity-10 dark:bg-opacity-10 mr-4">
+                                    <svg class="w-6 h-6 text-primary-light dark:text-primary-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 dark:text-gray-200">Email</h4>
+                                    <a href="mailto:elbasriakram771@gmail.com" class="text-gray-600 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark">elbasriakram771@gmail.com</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="p-3 rounded-full bg-primary-light dark:bg-primary-dark bg-opacity-10 dark:bg-opacity-10 mr-4">
+                                    <svg class="w-6 h-6 text-primary-light dark:text-primary-dark" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 dark:text-gray-200">LinkedIn</h4>
+                                    <a href="https://www.linkedin.com/in/akram-el-basri-900181228/" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark">linkedin.com/in/akram-el-basri</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="p-3 rounded-full bg-primary-light dark:bg-primary-dark bg-opacity-10 dark:bg-opacity-10 mr-4">
+                                    <svg class="w-6 h-6 text-primary-light dark:text-primary-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 dark:text-gray-200">Location</h4>
+                                    <p class="text-gray-600 dark:text-gray-300">Morocco</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="md:w-1/2">
+                        <form class="space-y-6">
+                            <div class="relative">
+                                <input type="text" id="name" class="block px-4 py-3 w-full text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark focus:border-transparent" placeholder=" " required>
+                                <label for="name" class="absolute left-4 top-3 text-gray-500 dark:text-gray-400 pointer-events-none transition-all duration-200 ease-in-out">Your Name</label>
+                            </div>
+                            
+                            <div class="relative">
+                                <input type="email" id="email" class="block px-4 py-3 w-full text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark focus:border-transparent" placeholder=" " required>
+                                <label for="email" class="absolute left-4 top-3 text-gray-500 dark:text-gray-400 pointer-events-none transition-all duration-200 ease-in-out">Your Email</label>
+                            </div>
+                            
+                            <div class="relative">
+                                <input type="text" id="subject" class="block px-4 py-3 w-full text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark focus:border-transparent" placeholder=" " required>
+                                <label for="subject" class="absolute left-4 top-3 text-gray-500 dark:text-gray-400 pointer-events-none transition-all duration-200 ease-in-out">Subject</label>
+                            </div>
+                            
+                            <div class="relative">
+                                <textarea id="message" rows="4" class="block px-4 py-3 w-full text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark focus:border-transparent" placeholder=" " required></textarea>
+                                <label for="message" class="absolute left-4 top-3 text-gray-500 dark:text-gray-400 pointer-events-none transition-all duration-200 ease-in-out">Your Message</label>
+                            </div>
+                            
+                            <button type="submit" class="px-6 py-3 bg-primary-light dark:bg-primary-dark text-white rounded-md hover:bg-opacity-90 transition-all transform hover:scale-105 shadow-lg w-full flex items-center justify-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Ajoutez ceci juste avant la balise </body> -->
+    <div id="chatbot-container" class="fixed bottom-8 right-8 z-50">
+        <!-- Bouton du chatbot -->
+        <button id="chatbot-toggle" class="w-16 h-16 rounded-full bg-primary-light dark:bg-primary-dark text-white shadow-lg hover:shadow-xl transition-all transform hover:scale-110 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+        </button>
+
+        <!-- Fenêtre du chatbot (cachée par défaut) -->
+        <div id="chatbot-window" class="hidden absolute bottom-20 right-0 w-80 h-96 bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden flex flex-col border border-gray-200 dark:border-gray-700">
+            <!-- En-tête du chatbot -->
+            <div class="bg-primary-light dark:bg-primary-dark text-white p-4 flex justify-between items-center">
+                <h3 class="font-semibold text-lg">Assistant Personnel</h3>
+                <button id="chatbot-close" class="text-white hover:text-gray-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Zone de conversation -->
+            <div id="chatbot-messages" class="flex-1 p-4 overflow-y-auto space-y-4">
+                <!-- Message de bienvenue -->
+                <div class="flex items-start">
+                    <div class="flex-shrink-0 h-8 w-8 rounded-full bg-primary-light dark:bg-primary-dark flex items-center justify-center text-white mr-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
+                    </div>
+                    <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-3 max-w-xs">
+                        <p class="text-gray-800 dark:text-gray-200">Bonjour ! Je suis l'assistant d'Akram. Posez-moi vos questions sur son parcours, ses compétences ou ses projets.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Zone de saisie -->
+            <div class="p-4 border-t border-gray-200 dark:border-gray-700">
+                <div class="flex space-x-2">
+                    <input id="chatbot-input" type="text" placeholder="Tapez votre message..." class="flex-1 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark">
+                    <button id="chatbot-send" class="px-4 py-2 bg-primary-light dark:bg-primary-dark text-white rounded-lg hover:bg-opacity-90 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-white dark:bg-gray-800 py-6 border-t border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-600 dark:text-gray-300">© 2025 Akram EL BASRI. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const sidebar = document.getElementById('sidebar');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            sidebar.classList.toggle('translate-x-0');
+        });
+        
+        // Dark mode toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const themeText = document.getElementById('theme-text');
+        
+        // Check for saved user preference or system preference
+        if (localStorage.getItem('color-theme') === 'dark' || (!localStorage.getItem('color-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>`;
+            themeText.textContent = 'Dark Mode';
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>`;
+            themeText.textContent = 'Light Mode';
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            // Toggle icon
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+                themeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>`;
+                themeText.textContent = 'Light Mode';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+                themeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>`;
+                themeText.textContent = 'Dark Mode';
+            }
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#sidebar a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 768) {
+                    sidebar.classList.remove('translate-x-0');
+                }
+            });
+        });
+
+        //  Project Cards
+        document.getElementById('view-all-projects').addEventListener('click', function() {
+        // Récupère tous les projets cachés
+        const hiddenProjects = document.querySelectorAll('.hidden-project');
+        
+        // Affiche chaque projet avec un léger délai pour l'animation en cascade
+        hiddenProjects.forEach((project, index) => {
+            setTimeout(() => {
+                project.classList.add('show-project');
+            }, index * 100); // 100ms de délai entre chaque projet
+        });
+
+        // Cache le bouton après avoir tout affiché
+        this.style.display = 'none';
+    });
+
+    // Gestionnaire du chatbot
+document.addEventListener('DOMContentLoaded', function() {
+    const chatbotToggle = document.getElementById('chatbot-toggle');
+    const chatbotClose = document.getElementById('chatbot-close');
+    const chatbotWindow = document.getElementById('chatbot-window');
+    const chatbotMessages = document.getElementById('chatbot-messages');
+    const chatbotInput = document.getElementById('chatbot-input');
+    const chatbotSend = document.getElementById('chatbot-send');
+    
+    // Générer un ID de session unique
+    const sessionId = 'session-' + Math.random().toString(36).substr(2, 9);
+    
+    // Ouvrir/fermer le chatbot
+    chatbotToggle.addEventListener('click', function() {
+        chatbotWindow.classList.toggle('hidden');
+    });
+    
+    chatbotClose.addEventListener('click', function() {
+        chatbotWindow.classList.add('hidden');
+    });
+    
+    // Envoyer un message
+    function sendMessage() {
+        const message = chatbotInput.value.trim();
+        if (message === '') return;
+        
+        // Ajouter le message de l'utilisateur
+        addMessage(message, 'user');
+        chatbotInput.value = '';
+        
+        // Afficher un indicateur de réponse en cours
+        const thinkingIndicator = addMessage('Je réfléchis...', 'assistant', true);
+        
+        // Envoyer au backend n8n
+        fetch('https://b6a3718f693a.ngrok-free.app/webhook/akram-elbasri-chatbot', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                sessionId: sessionId,
+                chatInput: message
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Supprimer l'indicateur et afficher la réponse
+            chatbotMessages.removeChild(thinkingIndicator);
+            addMessage(data.output, 'assistant');
+        })
+        .catch(error => {
+            chatbotMessages.removeChild(thinkingIndicator);
+            addMessage("Désolé, une erreur s'est produite. Veuillez réessayer plus tard.", 'assistant');
+            console.error('Error:', error);
+        });
+    }
+    
+    // Gestion de l'envoi
+    chatbotSend.addEventListener('click', sendMessage);
+    chatbotInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+    
+    // Ajouter un message à la conversation
+    function addMessage(text, sender, isThinking = false) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `flex items-start ${sender === 'user' ? 'justify-end' : ''}`;
+        
+        if (sender === 'user') {
+            messageDiv.innerHTML = `
+                <div class="bg-primary-light dark:bg-primary-dark text-white rounded-lg p-3 max-w-xs">
+                    <p>${text}</p>
+                </div>
+                <div class="flex-shrink-0 h-8 w-8 rounded-full bg-primary-light dark:bg-primary-dark flex items-center justify-center text-white ml-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                </div>
+            `;
+        } else {
+            messageDiv.innerHTML = `
+                <div class="flex-shrink-0 h-8 w-8 rounded-full bg-primary-light dark:bg-primary-dark flex items-center justify-center text-white mr-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                </div>
+                <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-3 max-w-xs">
+                    <p class="text-gray-800 dark:text-gray-200">${isThinking ? '<span class="animate-pulse">' + text + '</span>' : text}</p>
+                </div>
+            `;
+        }
+        
+        chatbotMessages.appendChild(messageDiv);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        
+        return messageDiv;
+            }
+        });
+
+        // Sections smooth Scroll 
+        ScrollReveal({
+                reset: false, // true si tu veux que ça réapparaisse à chaque scroll
+                distance: '50px',
+                duration: 1000,
+                easing: 'ease-in-out',
+                origin: 'bottom',
+                interval: 200
+            });
+
+            ScrollReveal().reveal('section', { interval: 300 });
+
+            const animateOnScroll = () => {
+            const elements = document.querySelectorAll('[class*="transform hover:-translate-y-1"]:not(.animated)');
+
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight * 0.85;
+
+                if (elementPosition < screenPosition) {
+                    element.classList.add('animate-fade-in');
+                    element.classList.add('animated'); // pour éviter de réanimer au scroll
+                }
+            });
+        };
+
+            window.addEventListener('scroll', animateOnScroll);
+            window.addEventListener('load', animateOnScroll); // pour exécuter à l'ouverture
+        </script>
+
+</body>
+</html>
