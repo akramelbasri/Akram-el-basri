@@ -31,7 +31,7 @@ This is a personal portfolio website designed to present my CV, certifications, 
 
 ## Screenshots
 
-> _Add screenshots of your website here. For example:_
+> _ Screenshots of my website here:_
 >
 > ![Profile Screenshot](img/Screenshot.png)
 
@@ -79,7 +79,7 @@ Akram-el-basri/
 
 - HTML5
 - CSS3 (inline or external, as per your project)
-- [Optionally add JavaScript if used]
+- JavaScript
 
 ## Contributing
 
@@ -97,5 +97,3 @@ This project is open source and available under the [MIT License](LICENSE) _(add
 - **Portfolio:** [https://akramelbasri.github.io/Akram-el-basri]
 
 ---
-
-Feel free to customize the sections (especially Contact, License, and Technologies Used) to better fit your actual details and preferences.
