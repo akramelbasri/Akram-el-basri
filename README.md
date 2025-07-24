@@ -31,7 +31,11 @@ This is a personal portfolio website designed to present my CV, certifications, 
 
 ## Screenshots
 
+<<<<<<< HEAD
 > screenshots of your website here. :_
+=======
+> _ Screenshots of my website here:_
+>>>>>>> 3e6f76b556b371c99fdad19c50bda755c752c512
 >
 > ![Profile Screenshot](img/Screenshot.png)
 
